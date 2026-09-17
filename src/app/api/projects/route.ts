@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { FALLBACK_PROJECTS, Project } from "@/data/projectsFallback";
 
-export const revalidate = 3600; // Cache for 1 hour
+export const revalidate = 3600;
 
 interface GitHubRepo {
   name: string;
@@ -40,18 +40,7 @@ function determineCategory(
   ) {
     return "Machine Learning & Data";
   }
-  if (
-    text.includes("ai") ||
-    text.includes("lang") ||
-    text.includes("tutor") ||
-    text.includes("gpt") ||
-    text.includes("copilot") ||
-    text.includes("career") ||
-    text.includes("full-stack")
-  ) {
-    return "AI & Full-Stack";
-  }
-  return "Mobile & Web Apps";
+  return "Full-Stack & Web";
 }
 
 export async function GET() {
@@ -74,9 +63,6 @@ export async function GET() {
     );
 
     if (!res.ok) {
-      console.warn(
-        `GitHub API returned ${res.status}: ${res.statusText}. Using fallback dataset.`
-      );
       return NextResponse.json({
         projects: FALLBACK_PROJECTS,
         lastSynced: new Date().toISOString(),
@@ -87,7 +73,6 @@ export async function GET() {
     const repos: GitHubRepo[] = await res.json();
     const fallbackMap = new Map(FALLBACK_PROJECTS.map((p) => [p.name.toLowerCase(), p]));
 
-    // Filter out forks or utility repos if needed, but include all original creations
     const originalRepos = repos.filter(
       (r) => !r.fork && r.name !== "portfolio" && r.name !== "day-71-music-blog"
     );
@@ -97,7 +82,6 @@ export async function GET() {
         const existing = fallbackMap.get(repo.name.toLowerCase());
 
         if (existing) {
-          // Merge live metadata from GitHub
           return {
             ...existing,
             stars: repo.stargazers_count,
@@ -108,18 +92,16 @@ export async function GET() {
           };
         }
 
-        // For newly created or discovered repos:
         const title = cleanTitle(repo.name);
         const tools: string[] = [];
         if (repo.language) tools.push(repo.language);
         if (repo.topics) tools.push(...repo.topics);
 
-        let architecture = `Modular architecture built with ${repo.language || "modern technologies"} with clean component separation and automated continuous deployment.`;
+        let architecture = `Built with ${repo.language || "modern tools"} and structured into clean, reusable modules with continuous deployment on Vercel.`;
         let description =
           repo.description ||
-          `Interactive application engineered by Johnpaul Akhator leveraging ${repo.language || "modern full-stack tools"} to solve real-world user needs.`;
+          `A software project developed by Johnpaul Akhator using ${repo.language || "modern web technologies"}.`;
 
-        // Attempt to fetch README for richer architecture & description
         try {
           const readmeRes = await fetch(
             `https://raw.githubusercontent.com/datnaijakid/${repo.name}/${repo.default_branch}/README.md`,
@@ -128,30 +110,31 @@ export async function GET() {
           if (readmeRes.ok) {
             const readmeText = await readmeRes.text();
             
-            // Extract architecture section if present
             const archMatch = readmeText.match(/## (?:Production )?Architecture[\s\S]*?(?=##|$)/i);
             if (archMatch) {
-              architecture = archMatch[0].replace(/## (?:Production )?Architecture/i, "").trim().slice(0, 350);
+              architecture = archMatch[0]
+                .replace(/## (?:Production )?Architecture/i, "")
+                .trim()
+                .slice(0, 250);
             }
 
-            // Extract tools / badges if present
-            const toolMatches = Array.from(readmeText.matchAll(/badge\/([A-Za-z0-9_.-]+)/g)).map(m => m[1]);
-            toolMatches.forEach(t => {
+            const toolMatches = Array.from(readmeText.matchAll(/badge\/([A-Za-z0-9_.-]+)/g)).map((m) => m[1]);
+            toolMatches.forEach((t) => {
               const cleanTool = t.replace(/_/g, " ").replace(/-/g, " ");
-              if (!tools.includes(cleanTool) && tools.length < 7) {
+              if (!tools.includes(cleanTool) && tools.length < 6) {
                 tools.push(cleanTool);
               }
             });
           }
         } catch {
-          // ignore readme fetch error
+          // ignore
         }
 
         return {
           id: repo.name,
           name: repo.name,
           title,
-          tagline: repo.description ? repo.description.slice(0, 60) : `Built with ${repo.language || "TypeScript"}`,
+          tagline: repo.description ? repo.description.slice(0, 50) : `Built with ${repo.language || "TypeScript"}`,
           description,
           architecture,
           tools: tools.length > 0 ? tools : [repo.language || "Code"],
@@ -166,7 +149,6 @@ export async function GET() {
       })
     );
 
-    // Prioritize featured / top projects first
     enrichedProjects.sort((a, b) => {
       if (a.featured && !b.featured) return -1;
       if (!a.featured && b.featured) return 1;

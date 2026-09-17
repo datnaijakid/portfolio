@@ -6,7 +6,7 @@ export interface Project {
   description: string;
   architecture: string;
   tools: string[];
-  category: "AI & Full-Stack" | "Mobile & Web Apps" | "Machine Learning & Data";
+  category: "Full-Stack & Web" | "Machine Learning & Data";
   github: string;
   live?: string;
   stars?: number;
@@ -20,13 +20,13 @@ export const FALLBACK_PROJECTS: Project[] = [
     id: "texted-lang-app",
     name: "texted-lang-app",
     title: "Texted",
-    tagline: "Learn a Language by Texting an AI Friend",
+    tagline: "Learn languages by texting an AI friend",
     description:
-      "An AI companion you text with to build authentic conversational language skills. Designed to feel like direct messaging a close friend rather than drilling through sterile flashcards, offering natural dialogue turns with contextual corrections.",
+      "A language learning web app designed like Instagram direct messages. Instead of drilling flashcards or repetitive quizzes, you practice conversational Spanish, French, or German by chatting back and forth with an AI that replies naturally and corrects your grammar in context.",
     architecture:
-      "React 18 + Vite SPA client hosted on Vercel interfacing with a FastAPI (Python) backend. Orchestrates conversational memory buffers, pedagogical prompt templates, and streaming OpenAI responses with custom error feedback loops.",
-    tools: ["React 18", "FastAPI", "Python", "OpenAI API", "Vite", "Tailwind CSS", "Vercel"],
-    category: "AI & Full-Stack",
+      "React 18 and Vite on the frontend with a Python FastAPI backend. Manages conversation history buffers to maintain multi-turn dialogue context and stream real-time corrections from the OpenAI API.",
+    tools: ["React", "FastAPI", "Python", "OpenAI", "Vite", "Tailwind CSS"],
+    category: "Full-Stack & Web",
     github: "https://github.com/datnaijakid/texted-lang-app",
     live: "https://texted-lang-app.vercel.app",
     stars: 0,
@@ -37,13 +37,13 @@ export const FALLBACK_PROJECTS: Project[] = [
     id: "career-os",
     name: "career-os",
     title: "CareerOS",
-    tagline: "Intelligent AI Job Application & Career Operating System",
+    tagline: "Job application tracker & resume assistant",
     description:
-      "An intelligent, keyboard-first career copilot engineered to streamline job tracking, dynamically tailor resumes against ATS requirements via LLMs, and monitor application pipelines in one unified workspace.",
+      "A personal job hunting workspace to organize job applications, track interview stages, and compare resume bullet points against job postings to spot missing keywords and improve application fit.",
     architecture:
-      "Next.js App Router full-stack architecture powered by Neon Serverless PostgreSQL and Prisma ORM. Employs Server Actions for zero-bundle authenticated mutations, asynchronous document parsing, and token-optimized AI evaluation.",
-    tools: ["Next.js 14", "TypeScript", "PostgreSQL", "Neon", "Prisma ORM", "Tailwind CSS", "OpenAI"],
-    category: "AI & Full-Stack",
+      "Next.js App Router full-stack app with server actions. Uses Neon serverless PostgreSQL and Prisma ORM for database storage and relational queries.",
+    tools: ["Next.js", "TypeScript", "PostgreSQL", "Neon", "Prisma", "Tailwind CSS"],
+    category: "Full-Stack & Web",
     github: "https://github.com/datnaijakid/career-os",
     live: "https://career-os-pi-steel.vercel.app",
     stars: 0,
@@ -54,13 +54,13 @@ export const FALLBACK_PROJECTS: Project[] = [
     id: "STREAK",
     name: "STREAK",
     title: "STREAK",
-    tagline: "Accountability & Habit Discipline Engine",
+    tagline: "Habit tracking & accountability app",
     description:
-      "A cross-platform habit discipline platform rooted in cognitive behavioral principles — engineered to conquer cravings, break addictive dopamine cycles, and forge unbreakable mental discipline with daily accountability.",
+      "A habit tracking app focused on consistency and discipline. Lets you define daily routines, check in, and maintain unbroken streaks with visual progress over time.",
     architecture:
-      "Cross-platform React Native & Expo Web framework delivering a unified codebase across Mobile and Web. Features local-first state persistence, reactive milestone triggers, and low-latency interaction loops.",
-    tools: ["React Native", "Expo Web", "TypeScript", "Tailwind CSS", "Vercel"],
-    category: "Mobile & Web Apps",
+      "Cross-platform app built with React Native and Expo Web sharing one unified codebase across mobile and browser, with local storage for instant offline access.",
+    tools: ["React Native", "Expo", "TypeScript", "Tailwind CSS"],
+    category: "Full-Stack & Web",
     github: "https://github.com/datnaijakid/STREAK",
     live: "https://streak-livid-mu.vercel.app",
     stars: 0,
@@ -71,13 +71,13 @@ export const FALLBACK_PROJECTS: Project[] = [
     id: "ai_personal_tutor",
     name: "ai_personal_tutor",
     title: "Professor DOTU",
-    tagline: "Adaptive Socratic AI Academic Tutor",
+    tagline: "Interactive AI study tutor",
     description:
-      "An interactive academic tutor that champions active student learning through Socratic questioning, dynamic concept scaffolding, and structured problem walkthroughs instead of passively handing over solutions.",
+      "A study companion that helps you work through homework and difficult concepts step-by-step. Instead of giving away direct answers, it asks guiding questions to help you understand the core logic.",
     architecture:
-      "Decoupled microservice architecture: Python 3.10+ FastAPI backend managing syllabus alignment and conversational state, communicating asynchronously with a Next.js 16 and React 19 frontend.",
-    tools: ["FastAPI", "Python 3.10+", "Next.js 16", "React 19", "LangChain", "OpenAI", "Tailwind CSS"],
-    category: "AI & Full-Stack",
+      "FastAPI backend handling session state and prompt structure, paired with a Next.js frontend with Markdown rendering and streaming responses.",
+    tools: ["FastAPI", "Python", "Next.js", "React", "OpenAI", "Tailwind CSS"],
+    category: "Full-Stack & Web",
     github: "https://github.com/datnaijakid/ai_personal_tutor",
     live: "https://prof-dotu.vercel.app",
     stars: 0,
@@ -88,13 +88,13 @@ export const FALLBACK_PROJECTS: Project[] = [
     id: "study-companion",
     name: "study-companion",
     title: "Study Companion",
-    tagline: "Guided Coursework Breakdown Engine",
+    tagline: "Assignment breakdown & study planner",
     description:
-      "Transforms overwhelming assignment prompts into structured step-by-step learning roadmaps with built-in anti-cheating guardrails, student upload limits, and Lemon Squeezy premium unlock checkout.",
+      "A student productivity tool that takes assignment prompts or course outlines and turns them into manageable, step-by-step study plans with built-in milestones.",
     architecture:
-      "Next.js App Router with secure server-side session cookies, rate-limited OpenAI prompts, automated syllabus segmenting, and webhook-verified subscription fulfillment.",
-    tools: ["Next.js 16", "TypeScript", "OpenAI API", "Lemon Squeezy", "Tailwind CSS"],
-    category: "AI & Full-Stack",
+      "Next.js web application with cookie-based session management, OpenAI API integration for prompt parsing, and Lemon Squeezy integration for subscription billing.",
+    tools: ["Next.js", "TypeScript", "OpenAI", "Lemon Squeezy", "Tailwind CSS"],
+    category: "Full-Stack & Web",
     github: "https://github.com/datnaijakid/study-companion",
     live: "https://study-companion-roan.vercel.app",
     stars: 0,
@@ -105,13 +105,13 @@ export const FALLBACK_PROJECTS: Project[] = [
     id: "Neetzmadeit",
     name: "Neetzmadeit",
     title: "Neetzmadeit",
-    tagline: "Artisan Boutique E-Commerce Platform",
+    tagline: "Custom knitwear & artisan shop",
     description:
-      "A bespoke e-commerce experience designed for a handmade fashion & artisan brand. Features interactive product showcases, seasonal collections, custom commission forms, and direct client ordering workflows.",
+      "An e-commerce website for a handmade clothing and knitwear brand, featuring dynamic product galleries, seasonal collections, and a custom order inquiry flow.",
     architecture:
-      "Mobile-optimized responsive architecture featuring modular component cards, client-side dynamic order modal state, and CDN-cached static assets for instantaneous page loads.",
-    tools: ["JavaScript", "HTML5", "CSS3", "Vercel", "Responsive Design"],
-    category: "Mobile & Web Apps",
+      "Responsive frontend with client-side product filtering, image lightbox views, and an interactive inquiry form for custom commissions.",
+    tools: ["JavaScript", "HTML5", "CSS3", "Vercel"],
+    category: "Full-Stack & Web",
     github: "https://github.com/datnaijakid/Neetzmadeit",
     live: "https://neetzmadeit.vercel.app",
     stars: 0,
@@ -121,13 +121,13 @@ export const FALLBACK_PROJECTS: Project[] = [
   {
     id: "Premier-League-Predictor",
     name: "Premier-League-Predictor",
-    title: "Premier League Match Predictor",
-    tagline: "11-Season Match Outcome Machine Learning Pipeline",
+    title: "Premier League Predictor",
+    tagline: "Match outcome forecasting with ML",
     description:
-      "A machine learning pipeline predicting match outcomes (Home Win, Draw, Away Win) trained on 4,180 Premier League matches spanning 11 consecutive seasons (2015–2026) using 220+ engineered statistical features.",
+      "A machine learning pipeline that predicts Premier League match outcomes (home win, draw, away win). Trained on 4,180 matches across 11 complete seasons (2015 to 2026) using team form, head-to-head records, and rolling match stats.",
     architecture:
-      "Multi-stage data engineering and modeling pipeline: raw data ingestion, automated rolling form calculation, team attacking/defensive rating matrices, followed by hyperparameter-tuned ensemble models (XGBoost & Logistic Regression).",
-    tools: ["Python", "Scikit-Learn", "Pandas", "NumPy", "XGBoost", "Jupyter Notebook"],
+      "Python data pipeline with Pandas and Scikit-learn: automated match data processing, rolling form calculations, and evaluation across Logistic Regression, Random Forest, and XGBoost classifiers.",
+    tools: ["Python", "Scikit-Learn", "Pandas", "NumPy", "XGBoost", "Jupyter"],
     category: "Machine Learning & Data",
     github: "https://github.com/datnaijakid/Premier-League-Predictor",
     live: "",
@@ -138,13 +138,13 @@ export const FALLBACK_PROJECTS: Project[] = [
   {
     id: "house-prices-predictor",
     name: "house-prices-predictor",
-    title: "California Housing Price Predictor",
-    tagline: "Demographic & Census Regression Engine",
+    title: "California Housing Predictor",
+    tagline: "Census housing price regression",
     description:
-      "Predictive machine learning regression model built to forecast California median house values by analyzing multi-dimensional geographic, demographic, and economic features.",
+      "A machine learning project exploring the California Housing census dataset to predict median home values based on location coordinates, room counts, and demographic indicators.",
     architecture:
-      "Exploratory data analysis, target distribution normalization, feature correlation filtering, and multi-variable regression with cross-validation and loss metric diagnostics.",
-    tools: ["Python", "Scikit-Learn", "Pandas", "Matplotlib", "Seaborn"],
+      "Feature engineering, outlier detection, and regression modeling with cross-validation and error diagnostics using Scikit-learn and Matplotlib.",
+    tools: ["Python", "Scikit-Learn", "Pandas", "Matplotlib"],
     category: "Machine Learning & Data",
     github: "https://github.com/datnaijakid/house-prices-predictor",
     live: "",
